@@ -5,7 +5,10 @@
 package Vista;
 
 import Controller.ChargeableController;
+import Model.BikeDelivery;
+import Model.VanDelivery;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,6 +17,7 @@ import javax.swing.JOptionPane;
 public class VentanaDelivery extends javax.swing.JFrame {
 
     private ChargeableController controller = new ChargeableController();
+    
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaDelivery.class.getName());
 
@@ -22,7 +26,6 @@ public class VentanaDelivery extends javax.swing.JFrame {
      */
     public VentanaDelivery() {
         initComponents();
-
     }
 
     /**
@@ -92,32 +95,32 @@ public class VentanaDelivery extends javax.swing.JFrame {
         jButton1RegistraCobro.addActionListener(this::jButton1RegistraCobroActionPerformed);
 
         jButton2LimpiaCampos.setText("Limpiar campos");
+        jButton2LimpiaCampos.addActionListener(this::jButton2LimpiaCamposActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1RegistraCobro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                        .addComponent(jButton2LimpiaCampos)
-                        .addGap(45, 45, 45))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1TipoDeDelivery)
-                            .addComponent(jLabel2DistanceKm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3Items, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(jLabel4TarifaPorItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(72, 72, 72)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2DistanceKm)
-                            .addComponent(jComboBox1TipoDeDelivery, 0, 140, Short.MAX_VALUE)
-                            .addComponent(jTextField3Itemss)
-                            .addComponent(jTextField4CantidadPerItem))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addComponent(jButton1RegistraCobro)
+                .addGap(40, 40, 40)
+                .addComponent(jButton2LimpiaCampos)
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1TipoDeDelivery)
+                    .addComponent(jLabel2DistanceKm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3Items, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(jLabel4TarifaPorItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField2DistanceKm)
+                    .addComponent(jComboBox1TipoDeDelivery, 0, 140, Short.MAX_VALUE)
+                    .addComponent(jTextField3Itemss)
+                    .addComponent(jTextField4CantidadPerItem))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +141,7 @@ public class VentanaDelivery extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4TarifaPorItem)
                     .addComponent(jTextField4CantidadPerItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1RegistraCobro)
                     .addComponent(jButton2LimpiaCampos))
@@ -180,26 +183,49 @@ public class VentanaDelivery extends javax.swing.JFrame {
         int distanceKm = Integer.parseInt(jTextField2DistanceKm.getText());
         String trankingId = "BIC-238";
         
-        controller.registrarBikeDeivery(trankingId, distanceKm);
-        JOptionPane.showMessageDialog(null, "Envío en biciclera registrado");
+        controller.registrarBikeDelivery(trankingId, distanceKm);
+        double monto = controller.getChargeables().get(controller.getChargeables().size() - 1)
+        .calculateCharge();
+        
+        JOptionPane.showMessageDialog(null, "Envío en biciclera registrado"
+        +"\n código de seguimiento: "+ trankingId + "\nMonto: " + monto);
+        
 //        JOptionPane.showMessageDialog(null, "Monto total: ");
         
         }else if (tipoDelivery.equals("Envío en forgoneta")){
             int distanceKm = Integer.parseInt(jTextField2DistanceKm.getText());
             String trankingId = "Ford-398";
             
-            controller.registrarVanDeivery(trankingId, distanceKm);
-            JOptionPane.showMessageDialog(null, "Envío en forgoneta registrado");
+            controller.registrarVanDelivery(trankingId, distanceKm);
+            double monto = controller.getChargeables().get(controller.getChargeables().size() - 1)
+        .calculateCharge();
+            
+            JOptionPane.showMessageDialog(null, "Envío en forgoneta registrado"
+            +"\n código de seguimiento: "+ trankingId + "\nMonto: " + monto);
         
         }else if (tipoDelivery.equals("Empaque")){
             int items = Integer.parseInt(jTextField3Itemss.getText());
             int ChargerPerItem = Integer.parseInt(jTextField4CantidadPerItem.getText());
             
             controller.registrarPackaging(items, ChargerPerItem);
-            JOptionPane.showMessageDialog(null, "Empaque registrado");
+            double monto = controller.getChargeables().get(controller.getChargeables().size() - 1)
+        .calculateCharge();
+            
+            JOptionPane.showMessageDialog(null, "Empaque registrado" + "\nMonto: " + monto);
             
         }
+        
+        
+        
     }//GEN-LAST:event_jButton1RegistraCobroActionPerformed
+
+    private void jButton2LimpiaCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2LimpiaCamposActionPerformed
+        
+        jTextField2DistanceKm.setText("");
+        jTextField3Itemss.setText("");
+        jTextField4CantidadPerItem.setText("");
+        
+    }//GEN-LAST:event_jButton2LimpiaCamposActionPerformed
 
     /**
      * @param args the command line arguments

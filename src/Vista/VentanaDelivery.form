@@ -68,31 +68,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButton1RegistraCobro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="85" max="32767" attributes="0"/>
-                      <Component id="jButton2LimpiaCampos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel1TipoDeDelivery" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2DistanceKm" max="32767" attributes="0"/>
-                          <Component id="jLabel3Items" alignment="0" pref="107" max="32767" attributes="0"/>
-                          <Component id="jLabel4TarifaPorItem" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField2DistanceKm" max="32767" attributes="0"/>
-                          <Component id="jComboBox1TipoDeDelivery" pref="140" max="32767" attributes="0"/>
-                          <Component id="jTextField3Itemss" max="32767" attributes="0"/>
-                          <Component id="jTextField4CantidadPerItem" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <Component id="jButton1RegistraCobro" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="jButton2LimpiaCampos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabel1TipoDeDelivery" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2DistanceKm" max="32767" attributes="0"/>
+                  <Component id="jLabel3Items" alignment="0" pref="107" max="32767" attributes="0"/>
+                  <Component id="jLabel4TarifaPorItem" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jTextField2DistanceKm" max="32767" attributes="0"/>
+                  <Component id="jComboBox1TipoDeDelivery" pref="140" max="32767" attributes="0"/>
+                  <Component id="jTextField3Itemss" max="32767" attributes="0"/>
+                  <Component id="jTextField4CantidadPerItem" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,7 +116,7 @@
                   <Component id="jLabel4TarifaPorItem" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField4CantidadPerItem" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1RegistraCobro" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton2LimpiaCampos" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -181,6 +178,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar campos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2LimpiaCamposActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

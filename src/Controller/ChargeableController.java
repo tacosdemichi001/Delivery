@@ -26,13 +26,13 @@ public class ChargeableController {
         return chargeables;
     }
 
-    public void registrarBikeDeivery(String trackingId, int distanceKm) {
+    public void registrarBikeDelivery(String trackingId, int distanceKm) {
         BikeDelivery bikeDelivery = new BikeDelivery(trackingId, distanceKm);//el ultimo lo debe tomar de la interfaz
         chargeables.add(bikeDelivery); //Agrega el registro al ArrayList chargeable
 
     }
 
-    public void registrarVanDeivery(String trackingId, int distanceKm) {
+    public void registrarVanDelivery(String trackingId, int distanceKm) {
         VanDelivery vanDelivery = new VanDelivery(trackingId, distanceKm);//el ultimo lo debe tomar de la interfaz
         chargeables.add(vanDelivery);
     }
